@@ -2,7 +2,7 @@
 
 This repository is your starting point for hw-05. Assignment details and instructions are below. 
 
-Link to your GitHub pages website: `[insert your *clickable* hyperlink here]`
+Link to your GitHub pages website: `https://github.com/DS4200-Fall21-Sec02/hw-05-d3-event-handling-hw-05-de-event-handling-mj-jf-cl.git`
 
 # Aim of the assignment
 
