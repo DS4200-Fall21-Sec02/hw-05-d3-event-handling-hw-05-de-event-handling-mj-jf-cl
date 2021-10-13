@@ -25,7 +25,8 @@ let rect = svg.append('rect')
   .attr('y', '200')
   .attr('width', '20%')
   .attr('height', '20%')
-  .attr('fill', '#a6cee3'); 
+  .attr('fill', '#a6cee3')
+  .on("click", changeCircleColor); 
 
 // Add a circle 
 let circle = svg.append('circle') 
@@ -33,6 +34,23 @@ let circle = svg.append('circle')
   .attr('cy', '250')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
+  .on("click", changeSquareColor);
+
+function changeCircleColor(){
+  circle.attr('fill', '#a6cee3')
+}
+
+function changeSquareColor(){
+  rect.attr('fill', '#b2df8a')
+}
+
+
+let btn = document.createElement(circle);
+btn.onclick = function (){
+  document.circle.style.fill='#337ab7'
+}
+
+
 
 
 
