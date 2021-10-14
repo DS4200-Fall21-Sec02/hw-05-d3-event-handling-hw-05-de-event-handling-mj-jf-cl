@@ -2,17 +2,17 @@
 // feel free to change the pre-set attributes as you see fit
 
 let margin = {
-    top: 60,
-    left: 50,
-    right: 30,
-    bottom: 35
-  },
-  width = 500 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+  top: 60,
+  left: 50,
+  right: 30,
+  bottom: 35
+},
+width = 500 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
 
 //SVG that will hold the visualization 
 let svg = d3.select('#vis')
-  .append('svg')
+.append('svg')
   .attr('preserveAspectRatio', 'xMidYMid meet') // this will scale your visualization according to the size of its parent element and the page.
   .attr('width', '100%') // this is now required by Chrome to ensure the SVG shows up at all
   .style('background-color', 'white') 
@@ -21,27 +21,54 @@ let svg = d3.select('#vis')
 
 // Add a square 
 let rect = svg.append('rect')
-  .attr('x', '100')
-  .attr('y', '200')
-  .attr('width', '20%')
-  .attr('height', '20%')
-  .attr('fill', '#a6cee3')
-  .on("click", changeCircleColor); 
+.attr('x', '100')
+.attr('y', '200')
+.attr('width', '20%')
+.attr('height', '20%')
+.attr('fill', '#a6cee3')
+.on("click", changeCircleColor)
+.on("mouseover", handleMouseHover)
+.on("mouseout", handleMouseOut); 
 
 // Add a circle 
 let circle = svg.append('circle') 
-  .attr('cx', '350')
-  .attr('cy', '250')
-  .attr('r', '60')
-  .attr('fill', '#b2df8a')
-  .on("click", changeSquareColor);
+.attr('cx', '350')
+.attr('cy', '250')
+.attr('r', '60')
+.attr('fill', '#b2df8a')
+.on("dblclick", changeBoth)
+.on("mouseover", handleMouseHover)
+.on("mouseout", handleMouseOut);
 
-function changeCircleColor(){
-  circle.attr('fill', '#a6cee3')
+
+function changeCircleColor() {
+  if (circle.attr('fill') == '#b2df8a') {
+    circle.attr('fill', '#a6cee3')
+  } else {
+    circle.attr('fill', '#b2df8a')
+  }
 }
 
-function changeSquareColor(){
-  rect.attr('fill', '#b2df8a')
+function changeBoth() {
+  if (circle.attr('fill') != 'magenta') {
+    circle.attr('fill', 'magenta')
+  } else {
+    circle.attr('fill', 'blue')
+  }
+  if (rect.attr('fill') != 'yellow') {
+    rect.attr('fill', 'yellow')
+  } else {
+    rect.attr('fill', 'black')
+  }
+}
+
+function handleMouseHover() {
+  d3.select(this).attr("stroke", "#000000")
+  d3.select(this).attr("stroke-width", 15)
+}
+
+function handleMouseOut() {
+  d3.select(this).attr("stroke", "outline: none;")
 }
 
 
@@ -49,8 +76,6 @@ let btn = document.createElement(circle);
 btn.onclick = function (){
   document.circle.style.fill='#337ab7'
 }
-
-
 
 
 
