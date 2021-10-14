@@ -28,7 +28,8 @@ let rect = svg.append('rect')
 .attr('fill', '#a6cee3')
 .on("click", changeCircleColor)
 .on("mouseover", handleMouseHover)
-.on("mouseout", handleMouseOut); 
+.on("mouseout", handleMouseOut).call(d3.drag()
+         .on("drag", rectDrag)); 
 
 // Add a circle 
 let circle = svg.append('circle') 
@@ -38,7 +39,8 @@ let circle = svg.append('circle')
 .attr('fill', '#b2df8a')
 .on("dblclick", changeBoth)
 .on("mouseover", handleMouseHover)
-.on("mouseout", handleMouseOut);
+.on("mouseout", handleMouseOut).call(d3.drag()
+         .on("drag", circleDrag));
 
 
 function changeCircleColor() {
@@ -71,6 +73,13 @@ function handleMouseOut() {
   d3.select(this).attr("stroke", "outline: none;")
 }
 
+function circleDrag(event, d){
+  d3.select(this).attr('cx', event.x).attr('cy', event.y).raise();
+}
+
+function rectDrag(event, d) {
+  d3.select(this).attr('x', event.x).attr('y', event.y).raise();
+}
 
 let btn = document.createElement(circle);
 btn.onclick = function (){
