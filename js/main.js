@@ -79,3 +79,53 @@ btn.onclick = function (){
 
 
 
+<<<<<<< HEAD
+=======
+
+
+data = [{"circle": "A"}, {"square", "b"}]
+radius = 60
+var node = svg.append("g")
+  .selectAll("circle")
+  .data(data)
+  .enter()
+  .append("circle")
+      .attr('cx', '350')
+      .attr('cy', '250')
+      .attr('r', radius)
+      .attr('fill', '#b2df8a')
+    .call(d3.drag()
+         .on("start", dragstarted)
+         .on("drag", dragged)
+         .on("end", dragended));
+
+var simulation = d3.forceSimulation()
+    .force("center", d3.forceCenter().x(width / 2).y(height / 2))
+    .force("charge", d3.forceManyBody().strength(1))
+    .force("collide", d3.forceCollide().strength(.1).radius(30).iterations(1))
+
+simulation
+    .nodes(data)
+    .on("tick", function(d){
+      node
+          .attr("cx", function(d){ return d.x; })
+          .attr("cy", function(d){ return d.y; })
+    });
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(.03).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(.03);
+  d.fx = null;
+  d.fy = null;
+}
+>>>>>>> f1dd09548bb71f6bfc932e391283b603f111685a
